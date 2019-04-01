@@ -14,15 +14,12 @@ func new_editor():
 
 func load_editor():
 	$Dialogs/Load.popup_centered()
-	print("unimplemented method")
 
 func save_editor():
 	$Dialogs/Save.popup_centered()
-	print("unimplemented method")
 
 func export_editor():
 	$Dialogs/Export.popup_centered()
-	$Exporter.export()
 
 func close_current_tab():
 	$VBoxContainer/Content.get_current_tab_control().queue_free()
@@ -67,5 +64,16 @@ func create_menu():
 	$VBoxContainer/MenuBar/FileButton.get_popup().connect("index_pressed", self, "_on_file_menu_item_pressed")
 
 func load_exporter():
-	$Exporter.script.source_code = "extends Node\nfunc export():\n\tprint(\"implement export here....\")\n"
+	$Exporter.script.source_code = "extends Node\nfunc export(path):\n\tprint(\"implement export here....\")\n"
 	$Exporter.script.reload(true)
+
+func _on_Save_file_selected(path):
+	print("implement me")
+
+
+func _on_Load_file_selected(path):
+	print("implement me")
+
+
+func _on_Export_file_selected(path):
+	$Exporter.export(path)

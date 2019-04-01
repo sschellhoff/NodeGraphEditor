@@ -47,3 +47,6 @@ mode = 0
 margin_right = 360.0
 margin_bottom = 130.0
 
+[connection signal="file_selected" from="Dialogs/Save" to="." method="_on_Save_file_selected"]
+[connection signal="file_selected" from="Dialogs/Load" to="." method="_on_Load_file_selected"]
+[connection signal="file_selected" from="Dialogs/Export" to="." method="_on_Export_file_selected"]

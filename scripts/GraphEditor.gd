@@ -8,6 +8,11 @@ func build_context_menu():
 	for type in $NodeBuilder.get_types():
 		$ContextMenu.add_item(type)
 
+func register_node_types(node_types):
+	for type in node_types:
+		$NodeBuilder.register_node_type(type.name, type.inputs, type.outputs)
+	build_context_menu()
+
 func remove_node(node):
 	remove_connections_from_node(node)
 	node.queue_free()
@@ -21,9 +26,7 @@ func get_selected_nodes():
 
 func remove_connections_from_node(node):
 	var connections = get_connection_list()
-	#print(connections)
 	for connection in connections:
-		print(node.get_name())
 		if node.get_name() == connection.from or node.get_name() == connection.to:
 			disconnect_node(connection.from, connection.from_port, connection.to, connection.to_port)
 

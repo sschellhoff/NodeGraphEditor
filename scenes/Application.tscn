@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Application.gd" type="Script" id=1]
 [ext_resource path="res://scenes/GraphEditor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Exporter.gd" type="Script" id=3]
+[ext_resource path="res://scripts/NewEditor.gd" type="Script" id=4]
 
 [node name="Application" type="Node"]
 script = ExtResource( 1 )
@@ -47,6 +48,24 @@ mode = 0
 margin_right = 360.0
 margin_bottom = 130.0
 
+[node name="NewEditor" type="ConfirmationDialog" parent="Dialogs"]
+margin_right = 200.0
+margin_bottom = 70.0
+script = ExtResource( 4 )
+
+[node name="label" type="Label" parent="Dialogs/NewEditor"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Nodes"
+
+[node name="node_types" type="OptionButton" parent="Dialogs/NewEditor"]
+margin_left = 60.0
+margin_right = 101.0
+margin_bottom = 20.0
+
 [connection signal="file_selected" from="Dialogs/Save" to="." method="_on_Save_file_selected"]
 [connection signal="file_selected" from="Dialogs/Load" to="." method="_on_Load_file_selected"]
 [connection signal="file_selected" from="Dialogs/Export" to="." method="_on_Export_file_selected"]
+[connection signal="about_to_show" from="Dialogs/NewEditor" to="Dialogs/NewEditor" method="_on_NewEditor_about_to_show"]
+[connection signal="confirmed" from="Dialogs/NewEditor" to="Dialogs/NewEditor" method="_on_NewEditor_confirmed"]
+[connection signal="open_new_editor" from="Dialogs/NewEditor" to="." method="_on_NewEditor_open_new_editor"]

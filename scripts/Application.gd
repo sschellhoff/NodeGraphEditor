@@ -5,11 +5,13 @@ export (PackedScene) var NodeEditor
 func _ready():
 	load_exporter()
 	create_menu()
-	new_editor()
+	load_node_types()
+	#new_editor()
 	
-func new_editor():
+func new_editor(node_types):
 	var editor_instance = NodeEditor.instance()
 	$VBoxContainer/Content.add_child(editor_instance)
+	editor_instance.register_node_types(node_types)
 	$VBoxContainer/Content.set_tab_title($VBoxContainer/Content.get_tab_count() - 1, "untitled")
 
 func load_editor():
@@ -28,13 +30,12 @@ func close_all_tabs():
 	var tab_count = $VBoxContainer/Content.get_tab_count()
 	for idx in range(tab_count):
 		$VBoxContainer/Content.get_tab_control(idx).queue_free()
-	new_editor()
 
 func _on_file_menu_item_pressed(idx):
 	var item_text = $VBoxContainer/MenuBar/FileButton.get_popup().get_item_text(idx)
 	match item_text:
 		"new":
-			new_editor()
+			$Dialogs/NewEditor.popup_centered()
 		"close current tab":
 			close_current_tab()
 		"close all tabs":
@@ -48,7 +49,7 @@ func _on_file_menu_item_pressed(idx):
 		"quit":
 			get_tree().quit()
 		_:
-			print("unrecognized button: ", item_text)
+			Logger.warning("unrecognized button: " + item_text)
 
 func create_menu():
 	$VBoxContainer/MenuBar/FileButton.get_popup().add_item("new", 0, KEY_MASK_CMD|KEY_N)
@@ -68,12 +69,19 @@ func load_exporter():
 	$Exporter.script.reload(true)
 
 func _on_Save_file_selected(path):
-	print("implement me")
+	Logger.warning("implement me")
 
 
 func _on_Load_file_selected(path):
-	print("implement me")
+	Logger.warning("implement me")
 
 
 func _on_Export_file_selected(path):
 	$Exporter.export(path)
+
+func load_node_types():
+	Logger.info(FilesystemHelper.get_files_in_directory("res://node_types"))
+	Logger.info(ProjectSettings.globalize_path("res://"))
+
+func _on_NewEditor_open_new_editor(node_types):
+	new_editor(node_types)

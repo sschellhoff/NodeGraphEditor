@@ -1,0 +1,32 @@
+[
+    {
+        "name": "add",
+         "inputs": ["a", "b"], 
+         "outputs": ["out"]
+    },
+    {
+        "name": "sub",
+        "inputs": ["a", "b"],
+        "outputs": ["out"]
+    },
+    {
+        "name": "mult",
+        "inputs": ["a", "b"],
+        "outputs": ["out"]
+    },
+    {
+        "name": "one",
+        "inputs": [],
+        "outputs": ["1"]
+    },
+    {
+        "name": "two",
+        "inputs": [],
+        "outputs": ["2"]
+    },
+    {
+        "name": "sink",
+        "inputs": ["in"],
+        "outputs": []
+    }
+]

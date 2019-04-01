@@ -23,6 +23,7 @@ const COLOR_FLOAT = Color(0.5, 0.5, 0.1)
 ################################################################################
 
 func register_node_type(type, inputs, outputs):
+	Logger.info(type + "\t" + str(inputs) + "\t" + str(outputs))
 	node_types[type] = {"inputs": inputs, "outputs": outputs}
 
 func create_empty_node(title, position=Vector2()):

@@ -19,6 +19,11 @@ config/name="NodeGraphEditor"
 run/main_scene="res://scenes/Application.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Logger="*res://scripts/Logger.gd"
+FilesystemHelper="*res://scripts/FilesystemHelper.gd"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

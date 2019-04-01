@@ -28,6 +28,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_vertical = 3
 tab_align = 0
+drag_to_rearrange_enabled = true
 
 [node name="Exporter" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -36,32 +37,76 @@ script = ExtResource( 3 )
 
 [node name="Save" type="FileDialog" parent="Dialogs"]
 margin_right = 360.0
-margin_bottom = 130.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+resizable = true
+access = 2
+current_dir = "/home/jacko/Development/game/godot/NodeGraphEditor"
+current_path = "/home/jacko/Development/game/godot/NodeGraphEditor/"
 
 [node name="Load" type="FileDialog" parent="Dialogs"]
 margin_right = 360.0
 margin_bottom = 130.0
+rect_min_size = Vector2( 200, 200 )
 window_title = "Datei öffnen"
+resizable = true
 mode = 0
+access = 2
+current_dir = "/home/jacko/Development/game/godot/NodeGraphEditor"
+current_path = "/home/jacko/Development/game/godot/NodeGraphEditor/"
 
 [node name="Export" type="FileDialog" parent="Dialogs"]
 margin_right = 360.0
 margin_bottom = 130.0
+rect_min_size = Vector2( 200, 200 )
+resizable = true
+access = 2
+current_dir = "/home/jacko/Development/game/godot/NodeGraphEditor"
+current_path = "/home/jacko/Development/game/godot/NodeGraphEditor/"
 
 [node name="NewEditor" type="ConfirmationDialog" parent="Dialogs"]
+editor/display_folded = true
 margin_right = 200.0
 margin_bottom = 70.0
+rect_min_size = Vector2( 300, 70 )
 script = ExtResource( 4 )
 
-[node name="label" type="Label" parent="Dialogs/NewEditor"]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="Dialogs/NewEditor"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 292.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="label" type="Label" parent="Dialogs/NewEditor/HBoxContainer2"]
+margin_left = 19.0
+margin_top = 6.0
+margin_right = 60.0
+margin_bottom = 20.0
 text = "Nodes"
 
-[node name="node_types" type="OptionButton" parent="Dialogs/NewEditor"]
-margin_left = 60.0
-margin_right = 101.0
-margin_bottom = 20.0
+[node name="node_types" type="OptionButton" parent="Dialogs/NewEditor/HBoxContainer2"]
+margin_left = 64.0
+margin_right = 264.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 200, 0 )
+
+[node name="NoFileSpecified" type="AcceptDialog" parent="Dialogs"]
+editor/display_folded = true
+margin_right = 200.0
+margin_bottom = 60.0
+
+[node name="Label2" type="Label" parent="Dialogs/NoFileSpecified"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -92.0
+margin_top = 8.0
+margin_right = 92.0
+margin_bottom = 24.0
+text = "You must specify a file name"
+align = 1
+valign = 1
 
 [connection signal="file_selected" from="Dialogs/Save" to="." method="_on_Save_file_selected"]
 [connection signal="file_selected" from="Dialogs/Load" to="." method="_on_Load_file_selected"]

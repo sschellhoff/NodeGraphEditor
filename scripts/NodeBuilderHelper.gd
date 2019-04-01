@@ -27,9 +27,10 @@ func register_node_type(type, inputs, outputs):
 	node_types[type] = {"inputs": inputs, "outputs": outputs}
 
 func create_empty_node(title, position=Vector2()):
-	var node = UsedGraphNode.instance()#GraphNode.new()
+	var node = UsedGraphNode.instance()
 	node.offset = position
 	node.set_title(title)
+	node.type = title
 	return node
 
 func create_node(title, inputs, outputs, position=Vector2()):

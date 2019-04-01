@@ -5,13 +5,26 @@ func _ready():
 	
 func build_context_menu():
 	$ContextMenu.clear()
-	for type in $NodeBuilder.get_types():
+	for type in $NodeBuilder.get_type_names():
 		$ContextMenu.add_item(type)
 
 func register_node_types(node_types):
 	for type in node_types:
 		$NodeBuilder.register_node_type(type.name, type.inputs, type.outputs)
 	build_context_menu()
+
+func get_graph_data():
+	return {"types": $NodeBuilder.get_types(), "nodes": get_nodes(), "connections": get_connections()}
+
+func get_nodes():
+	var nodes = []
+	for child in get_children():
+		if child is GraphNode:
+			nodes.append(child.get_node_data())
+	return nodes
+
+func get_connections():
+	return get_connection_list()
 
 func remove_node(node):
 	remove_connections_from_node(node)
@@ -42,7 +55,6 @@ func _on_GraphEdit_popup_request(position):
 
 func _on_ContextMenu_index_pressed(index):
 	add_child($NodeBuilder.create_node($ContextMenu.get_item_text(index), $ContextMenu.rect_position))
-
 
 func _on_GraphEdit_delete_nodes_request():
 	var selected_nodes = get_selected_nodes()

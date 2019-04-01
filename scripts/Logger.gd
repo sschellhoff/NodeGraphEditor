@@ -11,16 +11,16 @@ var Level = LOG_LEVEL.ALL
 
 func error(msg):
 	if Level != LOG_LEVEL.NOTHING:
-		print(msg)
+		print("error: ", msg)
 		flush()
 
 func warning(msg):
 	if Level != LOG_LEVEL.NOTHING and Level != LOG_LEVEL.ERROR:
-		print(msg)
+		print("warning: ", msg)
 
 func info(msg):
 	if Level != LOG_LEVEL.NOTHING and Level != LOG_LEVEL.ERROR and Level != LOG_LEVEL.WARNING:
-		print(msg)
+		print("info: ", msg)
 
 func flush():
 	pass

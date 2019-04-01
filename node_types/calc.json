@@ -15,6 +15,16 @@
         "outputs": ["out"]
     },
     {
+        "name": "div",
+        "inputs": ["a", "b"],
+        "outputs": ["out"]
+    },
+    {
+        "name": "zero",
+        "inputs": [],
+        "outputs": ["out"]
+    },
+    {
         "name": "one",
         "inputs": [],
         "outputs": ["1"]

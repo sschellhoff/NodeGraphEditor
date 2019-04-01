@@ -13,12 +13,15 @@ func new_editor():
 	$VBoxContainer/Content.set_tab_title($VBoxContainer/Content.get_tab_count() - 1, "untitled")
 
 func load_editor():
+	$Dialogs/Load.popup_centered()
 	print("unimplemented method")
 
 func save_editor():
+	$Dialogs/Save.popup_centered()
 	print("unimplemented method")
 
 func export_editor():
+	$Dialogs/Export.popup_centered()
 	$Exporter.export()
 
 func close_current_tab():

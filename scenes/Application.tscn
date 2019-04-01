@@ -31,3 +31,19 @@ tab_align = 0
 [node name="Exporter" type="Node" parent="."]
 script = ExtResource( 3 )
 
+[node name="Dialogs" type="Node" parent="."]
+
+[node name="Save" type="FileDialog" parent="Dialogs"]
+margin_right = 360.0
+margin_bottom = 130.0
+
+[node name="Load" type="FileDialog" parent="Dialogs"]
+margin_right = 360.0
+margin_bottom = 130.0
+window_title = "Datei öffnen"
+mode = 0
+
+[node name="Export" type="FileDialog" parent="Dialogs"]
+margin_right = 360.0
+margin_bottom = 130.0
+

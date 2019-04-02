@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Application.gd" type="Script" id=1]
 [ext_resource path="res://scenes/GraphEditor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/Exporter.gd" type="Script" id=3]
-[ext_resource path="res://scripts/NewEditor.gd" type="Script" id=4]
+[ext_resource path="res://scripts/MenuBar.gd" type="Script" id=3]
+[ext_resource path="res://scripts/Exporter.gd" type="Script" id=4]
+[ext_resource path="res://scripts/Dialogs.gd" type="Script" id=5]
+[ext_resource path="res://scripts/NewEditor.gd" type="Script" id=6]
 
 [node name="Application" type="Node"]
 script = ExtResource( 1 )
@@ -16,6 +18,7 @@ anchor_bottom = 1.0
 [node name="MenuBar" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 1024.0
 margin_bottom = 20.0
+script = ExtResource( 3 )
 
 [node name="FileButton" type="MenuButton" parent="VBoxContainer/MenuBar"]
 margin_right = 35.0
@@ -31,9 +34,10 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="Exporter" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="Dialogs" type="Node" parent="."]
+script = ExtResource( 5 )
 
 [node name="Save" type="FileDialog" parent="Dialogs"]
 margin_right = 360.0
@@ -69,9 +73,10 @@ editor/display_folded = true
 margin_right = 200.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 300, 70 )
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Dialogs/NewEditor"]
+editor/display_folded = true
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 292.0
@@ -108,9 +113,19 @@ text = "You must specify a file name"
 align = 1
 valign = 1
 
-[connection signal="file_selected" from="Dialogs/Save" to="." method="_on_Save_file_selected"]
-[connection signal="file_selected" from="Dialogs/Load" to="." method="_on_Load_file_selected"]
-[connection signal="file_selected" from="Dialogs/Export" to="." method="_on_Export_file_selected"]
+[connection signal="close_all_tabs_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_close_all_tabs_pressed"]
+[connection signal="close_current_tab_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_close_current_tab_pressed"]
+[connection signal="export_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_export_pressed"]
+[connection signal="load_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_load_pressed"]
+[connection signal="new_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_new_pressed"]
+[connection signal="quit_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_quit_pressed"]
+[connection signal="save_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_save_pressed"]
+[connection signal="export_editor" from="Dialogs" to="." method="_on_Dialogs_export_editor"]
+[connection signal="load_editor" from="Dialogs" to="." method="_on_Dialogs_load_editor"]
+[connection signal="open_new_editor" from="Dialogs" to="." method="_on_Dialogs_open_new_editor"]
+[connection signal="save_editor" from="Dialogs" to="." method="_on_Dialogs_save_editor"]
+[connection signal="file_selected" from="Dialogs/Save" to="Dialogs" method="_on_Save_file_selected"]
+[connection signal="file_selected" from="Dialogs/Load" to="Dialogs" method="_on_Load_file_selected"]
+[connection signal="file_selected" from="Dialogs/Export" to="Dialogs" method="_on_Export_file_selected"]
 [connection signal="about_to_show" from="Dialogs/NewEditor" to="Dialogs/NewEditor" method="_on_NewEditor_about_to_show"]
-[connection signal="confirmed" from="Dialogs/NewEditor" to="Dialogs/NewEditor" method="_on_NewEditor_confirmed"]
-[connection signal="open_new_editor" from="Dialogs/NewEditor" to="." method="_on_NewEditor_open_new_editor"]
+[connection signal="confirmed" from="Dialogs/NewEditor" to="Dialogs" method="_on_NewEditor_confirmed"]

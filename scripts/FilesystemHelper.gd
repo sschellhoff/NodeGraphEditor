@@ -22,7 +22,7 @@ func get_node_type_collections():
 		result.append(collection.left(collection.length() - 5))
 	return result
 
-func open_collection(name):
+func open_collection_by_name(name):
 	return json_from_file("res://node_types/" + name + ".json")
 
 func json_from_file(path):

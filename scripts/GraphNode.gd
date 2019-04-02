@@ -9,4 +9,4 @@ func _on_GraphNode_gui_input(event):
 		self.mouse_filter = Control.MOUSE_FILTER_PASS
 
 func get_node_data():
-	return {"name": get_name(), "type": type, "position": offset}
+	return {"name": get_name(), "type": type, "position": {"x": offset.x, "y": offset.y}}

@@ -8,6 +8,11 @@ func build_context_menu():
 	for type in $NodeBuilder.get_type_names():
 		$ContextMenu.add_item(type)
 
+func add_node(name, position, type):
+	var node = $NodeBuilder.create_node(type, position)
+	add_child(node)
+	node.set_name(name)
+
 func get_graph_data():
 	return {"types": $NodeBuilder.get_types(), "nodes": get_nodes(), "connections": get_connection_list()}
 

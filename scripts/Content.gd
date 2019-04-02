@@ -4,17 +4,18 @@ export (PackedScene) var NodeEditor
 
 signal number_of_tabs_changed(no)
 
-func new_editor(node_types):
+func new_editor(node_collection):
 	var editor_instance = NodeEditor.instance()
 	add_child(editor_instance)
-	editor_instance.register_node_types(node_types)
+	editor_instance.register_node_types_from_collection(node_collection)
 	editor_instance.connect("tree_exited", self, "_on_editor_closed")
 	current_tab = get_tab_count() - 1
 	set_title("* untitled *")
 	emit_signal("number_of_tabs_changed", get_tab_count())
 
 func new_editor_from_data(data):
-	print(data)
+	new_editor(data.node_collection)
+	get_current_tab_control().add_graph(data)
 
 func get_graph_data():
 	return get_current_tab_control().get_graph_data()

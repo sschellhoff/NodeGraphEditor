@@ -40,7 +40,6 @@ NodeEditor = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="Dialogs" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="Save" type="FileDialog" parent="Dialogs"]

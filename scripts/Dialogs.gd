@@ -1,6 +1,6 @@
 extends Node
 
-signal open_new_editor(node_types)
+signal open_new_editor(node_collection)
 signal save_editor(path)
 signal load_editor(path)
 signal export_editor(path, exporter)
@@ -18,7 +18,7 @@ func export_editor_dialog_open():
 	$Export.popup_centered()
 
 func _on_NewEditor_confirmed():
-	emit_signal("open_new_editor", FilesystemHelper.open_collection_by_name($NewEditor.get_selected()))
+	emit_signal("open_new_editor", $NewEditor.get_selected())
 
 func _on_Save_file_selected(path):
 	if path.ends_with("/"):

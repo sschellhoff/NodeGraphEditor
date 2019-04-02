@@ -4,14 +4,15 @@ func _ready():
 	$VBoxContainer/MenuBar.disable_save_export_buttons()
 	
 func new_editor(node_types):
+	print(node_types)
 	$VBoxContainer/Content.new_editor(node_types)
 
 func load_exporter(exporter):
 	$Exporter.script.source_code = "extends Node\nfunc export(path):\n\tprint(\"implement export here....\")\n"
 	$Exporter.script.reload(true)
 
-func _on_Dialogs_open_new_editor(node_types):
-	new_editor(node_types)
+func _on_Dialogs_open_new_editor(node_collection):
+	new_editor(node_collection)
 
 func _on_Dialogs_save_editor(path):
 	var graph_data = $VBoxContainer/Content.get_graph_data()
@@ -22,6 +23,8 @@ func _on_Dialogs_save_editor(path):
 func _on_Dialogs_load_editor(path):
 	var graph_data = FilesystemHelper.json_from_file(path)
 	$VBoxContainer/Content.new_editor_from_data(graph_data)
+	$VBoxContainer/Content.set_path(path)
+	$VBoxContainer/Content.set_title(FilesystemHelper.filename_from_path(path))
 
 func _on_Dialogs_export_editor(path, exporter):
 	load_exporter(exporter)

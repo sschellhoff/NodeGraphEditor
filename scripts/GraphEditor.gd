@@ -1,5 +1,7 @@
 extends Control
 
+export(String, FILE) var path
+
 func register_node_types(node_types):
 	for type in node_types:
 		$GraphEdit/NodeBuilder.register_node_type(type.name, type.inputs, type.outputs)

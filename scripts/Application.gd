@@ -15,15 +15,13 @@ func _on_Dialogs_open_new_editor(node_types):
 
 func _on_Dialogs_save_editor(path):
 	var graph_data = $VBoxContainer/Content.get_graph_data()
-	Logger.info(path)
-	Logger.info(graph_data)
-	var file = File.new()
-	file.open(path, File.WRITE)
-	file.store_string(JSON.print(graph_data))
-	file.close()
+	FilesystemHelper.write_json_file(path, graph_data)
+	$VBoxContainer/Content.set_path(path)
+	$VBoxContainer/Content.set_title(FilesystemHelper.filename_from_path(path))
 
 func _on_Dialogs_load_editor(path):
-	Logger.warning("implement me")
+	var graph_data = FilesystemHelper.json_from_file(path)
+	$VBoxContainer/Content.new_editor_from_data(graph_data)
 
 func _on_Dialogs_export_editor(path, exporter):
 	load_exporter(exporter)
@@ -47,7 +45,6 @@ func _on_MenuBar_close_current_tab_pressed():
 func _on_MenuBar_close_all_tabs_pressed():
 	$VBoxContainer/Content.free_all_editors()
 	
-
 func _on_MenuBar_quit_pressed():
 	get_tree().quit()
 

@@ -52,6 +52,3 @@ func _on_GraphEdit_delete_nodes_request():
 	var selected_nodes = get_selected_nodes()
 	for node in selected_nodes:
 		remove_node(node)
-
-func _on_GraphEdit_duplicate_nodes_request():
-	pass

@@ -1,29 +1,20 @@
 extends Node
 
-export (PackedScene) var NodeEditor
-
 func _ready():
 	$VBoxContainer/MenuBar.disable_save_export_buttons()
 	
 func new_editor(node_types):
-	var editor_instance = NodeEditor.instance()
-	$VBoxContainer/Content.add_child(editor_instance)
-	editor_instance.register_node_types(node_types)
-	$VBoxContainer/Content.set_tab_title($VBoxContainer/Content.get_tab_count() - 1, "untitled")
-	$VBoxContainer/MenuBar.enable_save_export_buttons()
+	$VBoxContainer/Content.new_editor(node_types)
 
 func load_exporter(exporter):
 	$Exporter.script.source_code = "extends Node\nfunc export(path):\n\tprint(\"implement export here....\")\n"
 	$Exporter.script.reload(true)
 
-func is_editor_open():
-	return $VBoxContainer/Content.get_tab_count() > 0
-
 func _on_Dialogs_open_new_editor(node_types):
 	new_editor(node_types)
 
 func _on_Dialogs_save_editor(path):
-	var graph_data = $VBoxContainer/Content.get_current_tab_control().get_graph_data()
+	var graph_data = $VBoxContainer/Content.get_graph_data()
 	Logger.info(path)
 	Logger.info(graph_data)
 	var file = File.new()
@@ -51,15 +42,17 @@ func _on_MenuBar_export_pressed():
 	$Dialogs.export_editor_dialog_open()
 
 func _on_MenuBar_close_current_tab_pressed():
-	if $VBoxContainer/Content.get_tab_count() == 1:
-		$VBoxContainer/MenuBar.disable_save_export_buttons()
-	$VBoxContainer/Content.get_current_tab_control().queue_free()
+	$VBoxContainer/Content.free_current_editor()
 
 func _on_MenuBar_close_all_tabs_pressed():
-	var tab_count = $VBoxContainer/Content.get_tab_count()
-	for idx in range(tab_count):
-		$VBoxContainer/Content.get_tab_control(idx).queue_free()
-	$VBoxContainer/MenuBar.disable_save_export_buttons()
+	$VBoxContainer/Content.free_all_editors()
+	
 
 func _on_MenuBar_quit_pressed():
 	get_tree().quit()
+
+func _on_Content_number_of_tabs_changed(no):
+	if no == 0:
+		$VBoxContainer/MenuBar.disable_save_export_buttons()
+	else:
+		$VBoxContainer/MenuBar.enable_save_export_buttons()

@@ -1,6 +1,7 @@
 extends Control
 
 signal needs_resave
+var unsaved = true
 
 export(String, FILE) var path
 var node_collection = null
@@ -34,3 +35,4 @@ func get_connections():
 func _on_GraphEdit_content_changed():
 	if path != null and path != "":
 		emit_signal("needs_resave")
+		unsaved = true

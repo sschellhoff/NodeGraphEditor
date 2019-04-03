@@ -40,6 +40,7 @@ NodeEditor = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="Dialogs" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="Save" type="FileDialog" parent="Dialogs"]
@@ -116,6 +117,54 @@ text = "You must specify a file name"
 align = 1
 valign = 1
 
+[node name="CloseWithoutSaving" type="ConfirmationDialog" parent="Dialogs"]
+editor/display_folded = true
+margin_right = 200.0
+margin_bottom = 70.0
+
+[node name="Label2" type="Label" parent="Dialogs/CloseWithoutSaving"]
+anchor_right = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 39.0
+text = "The editor was not saved. Do you still want to close it?"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="CloseAllWithoutSaving" type="ConfirmationDialog" parent="Dialogs"]
+editor/display_folded = true
+margin_right = 200.0
+margin_bottom = 70.0
+
+[node name="Label2" type="Label" parent="Dialogs/CloseAllWithoutSaving"]
+anchor_right = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 39.0
+text = "There are unsaved editors. Do you still want to close them?"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="QuitWithoutSaving" type="ConfirmationDialog" parent="Dialogs"]
+editor/display_folded = true
+margin_right = 200.0
+margin_bottom = 70.0
+
+[node name="Label2" type="Label" parent="Dialogs/QuitWithoutSaving"]
+anchor_right = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 39.0
+text = "There are unsaved editors. Do you still want to quit?"
+align = 1
+valign = 1
+autowrap = true
+
 [connection signal="close_all_tabs_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_close_all_tabs_pressed"]
 [connection signal="close_current_tab_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_close_current_tab_pressed"]
 [connection signal="export_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_export_pressed"]
@@ -124,12 +173,18 @@ valign = 1
 [connection signal="quit_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_quit_pressed"]
 [connection signal="save_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_save_pressed"]
 [connection signal="number_of_tabs_changed" from="VBoxContainer/Content" to="." method="_on_Content_number_of_tabs_changed"]
+[connection signal="close_all_editors_without_save" from="Dialogs" to="." method="_on_Dialogs_close_all_editors_without_save"]
+[connection signal="close_editor_without_save" from="Dialogs" to="." method="_on_Dialogs_close_editor_without_save"]
 [connection signal="export_editor" from="Dialogs" to="." method="_on_Dialogs_export_editor"]
 [connection signal="load_editor" from="Dialogs" to="." method="_on_Dialogs_load_editor"]
 [connection signal="open_new_editor" from="Dialogs" to="." method="_on_Dialogs_open_new_editor"]
+[connection signal="quit_without_save" from="Dialogs" to="." method="_on_Dialogs_quit_without_save"]
 [connection signal="save_editor" from="Dialogs" to="." method="_on_Dialogs_save_editor"]
 [connection signal="file_selected" from="Dialogs/Save" to="Dialogs" method="_on_Save_file_selected"]
 [connection signal="file_selected" from="Dialogs/Load" to="Dialogs" method="_on_Load_file_selected"]
 [connection signal="file_selected" from="Dialogs/Export" to="Dialogs" method="_on_Export_file_selected"]
 [connection signal="about_to_show" from="Dialogs/NewEditor" to="Dialogs/NewEditor" method="_on_NewEditor_about_to_show"]
 [connection signal="confirmed" from="Dialogs/NewEditor" to="Dialogs" method="_on_NewEditor_confirmed"]
+[connection signal="confirmed" from="Dialogs/CloseWithoutSaving" to="Dialogs" method="_on_CloseWithoutSaving_confirmed"]
+[connection signal="confirmed" from="Dialogs/CloseAllWithoutSaving" to="Dialogs" method="_on_CloseAllWithoutSaving_confirmed"]
+[connection signal="confirmed" from="Dialogs/QuitWithoutSaving" to="Dialogs" method="_on_QuitWithoutSaving_confirmed"]

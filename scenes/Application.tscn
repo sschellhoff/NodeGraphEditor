@@ -74,7 +74,6 @@ current_dir = "/home/jacko/Development/game/godot/NodeGraphEditor"
 current_path = "/home/jacko/Development/game/godot/NodeGraphEditor/"
 
 [node name="NewEditor" type="ConfirmationDialog" parent="Dialogs"]
-editor/display_folded = true
 margin_right = 200.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 300, 70 )

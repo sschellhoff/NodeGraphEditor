@@ -51,7 +51,7 @@ func _on_Save_file_selected(path):
 		emit_signal("save_editor", path)
 
 func _on_Export_file_selected(path):
-	var selected_exporter = $SelectExporter/OptionButton.get_item_text($SelectExporter/OptionButton.get_selected_id())
+	var selected_exporter = $SelectExporter/OptionButton.get_item_text($SelectExporter/OptionButton.get_selected())
 	if selected_exporter == null or selected_exporter == "":
 		Logger.error("No exporter selected!")
 	else:
@@ -70,7 +70,7 @@ func _on_QuitWithoutSaving_confirmed():
 	emit_signal("quit_without_save")
 
 func _on_SelectExporter_confirmed():
-	var selected_exporter = $SelectExporter/OptionButton.get_item_text($SelectExporter/OptionButton.get_selected_id())
+	var selected_exporter = $SelectExporter/OptionButton.get_item_text($SelectExporter/OptionButton.get_selected())
 	if selected_exporter == null or selected_exporter == "":
 		Logger.error("No exporter selected!")
 	else:

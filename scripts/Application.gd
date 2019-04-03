@@ -8,7 +8,8 @@ func new_editor(node_types):
 	$VBoxContainer/Content.new_editor(node_types)
 
 func load_exporter(exporter):
-	$Exporter.script.source_code = "extends Node\nfunc export(path):\n\tprint(\"implement export here....\")\n"
+	var exporter_code = FilesystemHelper.get_exporter_by_name(exporter)
+	$Exporter.script.source_code = exporter_code
 	$Exporter.script.reload(true)
 
 func _on_Dialogs_open_new_editor(node_collection):
@@ -27,7 +28,15 @@ func _on_Dialogs_load_editor(path):
 
 func _on_Dialogs_export_editor(path, exporter):
 	load_exporter(exporter)
-	$Exporter.export(path)
+	var data_to_export = $Exporter.export($VBoxContainer/Content.get_graph_data())
+	if data_to_export is String:
+		FilesystemHelper.write_text_file(path, data_to_export)
+	elif data_to_export is Dictionary:
+		FilesystemHelper.write_json_file(path, data_to_export)
+	elif data_to_export is PoolByteArray:
+		FilesystemHelper.write_binary_file(path, data_to_export)
+	else:
+		Logger.error("export script must return a string, Dictionary or PoolByteArray!")
 
 func _on_Dialogs_close_editor_without_save():
 	$VBoxContainer/Content.free_current_editor()

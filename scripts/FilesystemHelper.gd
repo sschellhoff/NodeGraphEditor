@@ -41,16 +41,18 @@ func get_exporters():
 		result.append(exporter.left(exporter.length() - 3))
 	return result
 
-func get_exporter_path_by_name(name):
-	return "res://exporters/" + name + ".gd"
+func get_exporter_by_name(name):
+	return text_from_file("res://exporters/" + name + ".gd")
 
-func json_from_file(path):
+func text_from_file(path):
 	var file = File.new()
 	file.open(path, File.READ)
 	var text = file.get_as_text()
-	var result = parse_json(text)
 	file.close()
-	return result;
+	return text;	
+
+func json_from_file(path):
+	return parse_json(text_from_file(path))
 
 func write_text_file(path, data):
 	var file = File.new()
@@ -60,3 +62,9 @@ func write_text_file(path, data):
 
 func write_json_file(path, data):
 	write_text_file(path, JSON.print(data))
+
+func write_binary_file(path, poolbytearray):
+	var file = File.new()
+	file.open(path, File.WRITE)
+	file.store_buffer(poolbytearray)
+	file.close()

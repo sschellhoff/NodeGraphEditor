@@ -16,7 +16,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="MenuBar" type="HBoxContainer" parent="VBoxContainer"]
-editor/display_folded = true
 margin_right = 1024.0
 margin_bottom = 20.0
 script = ExtResource( 2 )
@@ -143,7 +142,7 @@ anchor_right = 1.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = -8.0
-margin_bottom = 39.0
+margin_bottom = 56.0
 text = "There are unsaved editors. Do you still want to close them?"
 align = 1
 valign = 1
@@ -172,7 +171,10 @@ margin_bottom = 70.0
 
 [node name="OptionButton" type="OptionButton" parent="Dialogs/SelectExporter"]
 anchor_right = 1.0
-margin_bottom = 20.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 34.0
 
 [connection signal="close_all_tabs_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_close_all_tabs_pressed"]
 [connection signal="close_current_tab_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_close_current_tab_pressed"]
@@ -180,6 +182,7 @@ margin_bottom = 20.0
 [connection signal="load_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_load_pressed"]
 [connection signal="new_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_new_pressed"]
 [connection signal="quit_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_quit_pressed"]
+[connection signal="save_as_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_save_as_pressed"]
 [connection signal="save_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_save_pressed"]
 [connection signal="number_of_tabs_changed" from="VBoxContainer/Content" to="." method="_on_Content_number_of_tabs_changed"]
 [connection signal="close_all_editors_without_save" from="Dialogs" to="." method="_on_Dialogs_close_all_editors_without_save"]

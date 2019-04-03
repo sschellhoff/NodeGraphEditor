@@ -12,13 +12,16 @@ func load_exporter(exporter):
 	$Exporter.script.source_code = exporter_code
 	$Exporter.script.reload(true)
 
+func save_current_editor(path):
+	var graph_data = $VBoxContainer/Content.get_graph_data()
+	FilesystemHelper.write_json_file(path, graph_data)
+	$VBoxContainer/Content.set_saved(path)
+
 func _on_Dialogs_open_new_editor(node_collection):
 	new_editor(node_collection)
 
 func _on_Dialogs_save_editor(path):
-	var graph_data = $VBoxContainer/Content.get_graph_data()
-	FilesystemHelper.write_json_file(path, graph_data)
-	$VBoxContainer/Content.set_saved(path)
+	save_current_editor(path)
 
 func _on_Dialogs_load_editor(path):
 	var graph_data = FilesystemHelper.json_from_file(path)
@@ -51,6 +54,13 @@ func _on_MenuBar_new_pressed():
 	$Dialogs.new_editor_dialog_open()
 
 func _on_MenuBar_save_pressed():
+	var path = $VBoxContainer/Content.get_path()
+	if path == null or path == "":
+		$Dialogs.save_editor_dialog_open($VBoxContainer/Content.get_path())
+	else:
+		save_current_editor(path)
+
+func _on_MenuBar_save_as_pressed():
 	$Dialogs.save_editor_dialog_open($VBoxContainer/Content.get_path())
 
 func _on_MenuBar_load_pressed():

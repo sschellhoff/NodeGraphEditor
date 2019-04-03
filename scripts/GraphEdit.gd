@@ -45,6 +45,14 @@ func remove_connections_from_node(node):
 			disconnect_node(connection.from, connection.from_port, connection.to, connection.to_port)
 	emit_signal("content_changed")
 
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed:
+			if event.scancode == KEY_SPACE:
+				_on_GraphEdit_popup_request(get_viewport().get_mouse_position())
+			elif event.scancode == KEY_X:
+				_on_GraphEdit_delete_nodes_request()
+
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 	connect_node(from, from_slot, to, to_slot)
 	emit_signal("content_changed")

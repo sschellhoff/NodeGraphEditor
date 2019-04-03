@@ -20,6 +20,16 @@
         "outputs": ["out"]
     },
     {
+        "name": "sqrt",
+        "inputs":   ["in"],
+        "outputs":  ["out"]
+    },
+    {
+        "name": "pow",
+        "inputs":   ["in", "exp"],
+        "outputs":  ["out"]
+    },
+    {
         "name": "zero",
         "inputs": [],
         "outputs": ["out"]

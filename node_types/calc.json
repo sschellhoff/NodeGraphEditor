@@ -29,6 +29,17 @@
             "name": "div",
              "inputs": [ {"name": "a", "type": "float"}, {"name": "b", "type": "float" }], 
              "outputs": [ { "name": "out", "type": "float" }]
+        },
+        {
+            "name": "zero",
+            "inputs":   [],
+            "outputs":  [ {"name": "0", "type": "float"} ]
+        },
+        {
+            "name": "sink",
+            "inputs":   [ {"name": "in", "type": "float" } ],
+            "outputs":  []
         }
+
     ]
 }

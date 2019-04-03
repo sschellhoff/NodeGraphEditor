@@ -8,7 +8,12 @@ var node_collection = null
 
 func register_node_types_from_collection(node_collection):
 	self.node_collection = node_collection
-	var node_types = FilesystemHelper.open_collection_by_name(node_collection)
+	var type_collection = FilesystemHelper.open_collection_by_name(node_collection)
+	Logger.info(type_collection)
+	var port_types = type_collection.port_types
+	for type in port_types:
+		$GraphEdit/NodeBuilder.register_port_type(type.name, Color(type.color[0], type.color[1], type.color[2]))
+	var node_types = type_collection.node_types
 	for type in node_types:
 		$GraphEdit/NodeBuilder.register_node_type(type.name, type.inputs, type.outputs)
 	$GraphEdit.build_context_menu()

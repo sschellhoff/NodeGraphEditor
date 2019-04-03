@@ -18,6 +18,12 @@ func get_files_in_directory(path):
 func filename_from_path(path):
 	return path.right(path.find_last("/")+1)
 
+func path_without_filename(path):
+	return path.left(path.find_last("/"))
+
+func get_working_directory():
+	return "res://"
+
 func get_node_type_collections():
 	var result = []
 	var collections = get_files_in_directory("res://node_types")
@@ -44,3 +50,4 @@ func write_text_file(path, data):
 
 func write_json_file(path, data):
 	write_text_file(path, JSON.print(data))
+	

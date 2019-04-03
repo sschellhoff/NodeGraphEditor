@@ -8,7 +8,12 @@ signal export_editor(path, exporter)
 func new_editor_dialog_open():
 	$NewEditor.popup_centered()
 
-func save_editor_dialog_open():
+func save_editor_dialog_open(path=null):
+	if path != null and path != "":
+		$Save.set_current_path(path)
+	else:
+		$Save.set_current_path(FilesystemHelper.get_working_directory())
+		$Save.set_current_file("")
 	$Save.popup_centered()
 
 func load_editor_dialog_open():

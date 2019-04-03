@@ -9,6 +9,7 @@ func new_editor(node_collection):
 	add_child(editor_instance)
 	editor_instance.register_node_types_from_collection(node_collection)
 	editor_instance.connect("tree_exited", self, "_on_editor_closed")
+	editor_instance.connect("needs_resave", self, "_on_editor_needs_resave")
 	current_tab = get_tab_count() - 1
 	set_title("* untitled *")
 	emit_signal("number_of_tabs_changed", get_tab_count())
@@ -46,3 +47,7 @@ func free_all_editors():
 
 func _on_editor_closed():
 	emit_signal("number_of_tabs_changed", get_tab_count())
+
+func _on_editor_needs_resave():
+	if not get_tab_title(current_tab).ends_with(" *"):
+		set_title(get_tab_title(current_tab) + " *")

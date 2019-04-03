@@ -34,7 +34,7 @@ func _on_MenuBar_new_pressed():
 	$Dialogs.new_editor_dialog_open()
 
 func _on_MenuBar_save_pressed():
-	$Dialogs.save_editor_dialog_open()
+	$Dialogs.save_editor_dialog_open($VBoxContainer/Content.get_path())
 
 func _on_MenuBar_load_pressed():
 	$Dialogs.load_editor_dialog_open()

@@ -27,7 +27,9 @@ UsedGraphNode = ExtResource( 5 )
 margin_right = 20.0
 margin_bottom = 20.0
 
+[connection signal="_end_node_move" from="GraphEdit" to="GraphEdit" method="_on_GraphEdit__end_node_move"]
 [connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_GraphEdit_connection_request"]
+[connection signal="content_changed" from="GraphEdit" to="." method="_on_GraphEdit_content_changed"]
 [connection signal="delete_nodes_request" from="GraphEdit" to="GraphEdit" method="_on_GraphEdit_delete_nodes_request"]
 [connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_GraphEdit_disconnection_request"]
 [connection signal="popup_request" from="GraphEdit" to="GraphEdit" method="_on_GraphEdit_popup_request"]

@@ -1,5 +1,7 @@
 extends Control
 
+signal needs_resave
+
 export(String, FILE) var path
 var node_collection = null
 
@@ -28,3 +30,7 @@ func get_nodes():
 
 func get_connections():
 	return $GraphEdit.get_connection_list()
+
+func _on_GraphEdit_content_changed():
+	if path != null and path != "":
+		emit_signal("needs_resave")

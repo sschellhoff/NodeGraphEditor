@@ -1,5 +1,7 @@
 extends GraphEdit
 
+signal content_changed
+
 func _ready():
 	build_context_menu()
 	
@@ -12,6 +14,7 @@ func add_node(name, position, type):
 	var node = $NodeBuilder.create_node(type, position)
 	add_child(node)
 	node.set_name(name)
+	emit_signal("content_changed")
 
 func get_graph_data():
 	return {"types": $NodeBuilder.get_types(), "nodes": get_nodes(), "connections": get_connection_list()}
@@ -26,6 +29,7 @@ func get_nodes():
 func remove_node(node):
 	remove_connections_from_node(node)
 	node.queue_free()
+	emit_signal("content_changed")
 
 func get_selected_nodes():
 	var selected_nodes = []
@@ -39,12 +43,15 @@ func remove_connections_from_node(node):
 	for connection in connections:
 		if node.get_name() == connection.from or node.get_name() == connection.to:
 			disconnect_node(connection.from, connection.from_port, connection.to, connection.to_port)
+	emit_signal("content_changed")
 
 func _on_GraphEdit_connection_request(from, from_slot, to, to_slot):
 	connect_node(from, from_slot, to, to_slot)
+	emit_signal("content_changed")
 
 func _on_GraphEdit_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)
+	emit_signal("content_changed")
 
 func _on_GraphEdit_popup_request(position):
 	$ContextMenu.rect_position = position
@@ -57,3 +64,7 @@ func _on_GraphEdit_delete_nodes_request():
 	var selected_nodes = get_selected_nodes()
 	for node in selected_nodes:
 		remove_node(node)
+	emit_signal("content_changed")
+
+func _on_GraphEdit__end_node_move():
+	emit_signal("content_changed")

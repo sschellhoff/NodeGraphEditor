@@ -28,8 +28,17 @@ func export_editor_dialog_open():
 	if exporters.size() == 0:
 		Logger.error("no exporter installed!")
 	else:
+		var is_last_selected_editor_there = false
+		var id_of_last_selected_editor = 0
 		for exporter in exporters:
 			$SelectExporter/OptionButton.add_item(exporter)
+			if not is_last_selected_editor_there:
+				if exporter == $SelectExporter.last_selected_exporter:
+					is_last_selected_editor_there = true
+				else:
+					id_of_last_selected_editor += 1
+		if is_last_selected_editor_there:
+			$SelectExporter/OptionButton.select(id_of_last_selected_editor)
 		$SelectExporter.popup_centered()
 
 func close_without_saving_dialog_open():
@@ -55,6 +64,7 @@ func _on_Export_file_selected(path):
 	if selected_exporter == null or selected_exporter == "":
 		Logger.error("No exporter selected!")
 	else:
+		$SelectExporter.last_selected_exporter = selected_exporter
 		emit_signal("export_editor", path, selected_exporter)
 
 func _on_Load_file_selected(path):

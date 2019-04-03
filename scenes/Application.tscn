@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Application.gd" type="Script" id=1]
 [ext_resource path="res://scripts/MenuBar.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scripts/Exporter.gd" type="Script" id=5]
 [ext_resource path="res://scripts/Dialogs.gd" type="Script" id=6]
 [ext_resource path="res://scripts/NewEditor.gd" type="Script" id=7]
+[ext_resource path="res://scripts/SelectExporter.gd" type="Script" id=8]
 
 [node name="Application" type="Node"]
 script = ExtResource( 1 )
@@ -73,6 +74,7 @@ current_dir = "/home/jacko/Development/game/godot/NodeGraphEditor"
 current_path = "/home/jacko/Development/game/godot/NodeGraphEditor/"
 
 [node name="NewEditor" type="ConfirmationDialog" parent="Dialogs"]
+editor/display_folded = true
 margin_right = 200.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 300, 70 )
@@ -165,9 +167,9 @@ valign = 1
 autowrap = true
 
 [node name="SelectExporter" type="ConfirmationDialog" parent="Dialogs"]
-editor/display_folded = true
 margin_right = 200.0
 margin_bottom = 70.0
+script = ExtResource( 8 )
 
 [node name="OptionButton" type="OptionButton" parent="Dialogs/SelectExporter"]
 anchor_right = 1.0

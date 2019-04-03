@@ -1,0 +1,1 @@
+{"node_collection":"example","nodes":[{"name":"GraphNode","type":"add","position":{"x":280,"y":265}},{"name":"@GraphNode@320","type":"sub","position":{"x":489,"y":337}}],"connections":[{"from":"GraphNode","from_port":0,"to":"@GraphNode@320","to_port":0}]}

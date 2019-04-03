@@ -21,11 +21,15 @@ func _ready():
 	$FileButton.get_popup().add_item("quit", 0, KEY_MASK_CMD|KEY_Q)
 	$FileButton.get_popup().connect("index_pressed", self, "_on_file_menu_item_pressed")
 
-func enable_save_export_buttons():
+func enable_editor_buttons():
+	$FileButton.get_popup().set_item_disabled(2, false)
+	$FileButton.get_popup().set_item_disabled(3, false)
 	$FileButton.get_popup().set_item_disabled(5, false)
 	$FileButton.get_popup().set_item_disabled(7, false)
 
-func disable_save_export_buttons():
+func disable_editor_buttons():
+	$FileButton.get_popup().set_item_disabled(2, true)
+	$FileButton.get_popup().set_item_disabled(3, true)
 	$FileButton.get_popup().set_item_disabled(5, true)
 	$FileButton.get_popup().set_item_disabled(7, true)
 

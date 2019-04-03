@@ -34,6 +34,16 @@ func get_node_type_collections():
 func open_collection_by_name(name):
 	return json_from_file("res://node_types/" + name + ".json")
 
+func get_exporters():
+	var result = []
+	var exporters = get_files_in_directory("res://exporters")
+	for exporter in exporters:
+		result.append(exporter.left(exporter.length() - 3))
+	return result
+
+func get_exporter_path_by_name(name):
+	return "res://exporters/" + name + ".gd"
+
 func json_from_file(path):
 	var file = File.new()
 	file.open(path, File.READ)
@@ -50,4 +60,3 @@ func write_text_file(path, data):
 
 func write_json_file(path, data):
 	write_text_file(path, JSON.print(data))
-	

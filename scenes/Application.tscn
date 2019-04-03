@@ -40,7 +40,6 @@ NodeEditor = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="Dialogs" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="Save" type="FileDialog" parent="Dialogs"]
@@ -49,6 +48,7 @@ margin_bottom = 200.0
 rect_min_size = Vector2( 200, 200 )
 resizable = true
 access = 2
+filters = PoolStringArray( "*.json ; JSON", "*.txt ; text file" )
 current_dir = "/home/jacko/Development/game/godot/NodeGraphEditor"
 current_path = "/home/jacko/Development/game/godot/NodeGraphEditor/"
 
@@ -60,6 +60,7 @@ window_title = "Datei öffnen"
 resizable = true
 mode = 0
 access = 2
+filters = PoolStringArray( "*.json ; JSON", "*.txt ; text file" )
 current_dir = "/home/jacko/Development/game/godot/NodeGraphEditor"
 current_path = "/home/jacko/Development/game/godot/NodeGraphEditor/"
 
@@ -165,6 +166,15 @@ align = 1
 valign = 1
 autowrap = true
 
+[node name="SelectExporter" type="ConfirmationDialog" parent="Dialogs"]
+editor/display_folded = true
+margin_right = 200.0
+margin_bottom = 70.0
+
+[node name="OptionButton" type="OptionButton" parent="Dialogs/SelectExporter"]
+anchor_right = 1.0
+margin_bottom = 20.0
+
 [connection signal="close_all_tabs_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_close_all_tabs_pressed"]
 [connection signal="close_current_tab_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_close_current_tab_pressed"]
 [connection signal="export_pressed" from="VBoxContainer/MenuBar" to="." method="_on_MenuBar_export_pressed"]
@@ -188,3 +198,4 @@ autowrap = true
 [connection signal="confirmed" from="Dialogs/CloseWithoutSaving" to="Dialogs" method="_on_CloseWithoutSaving_confirmed"]
 [connection signal="confirmed" from="Dialogs/CloseAllWithoutSaving" to="Dialogs" method="_on_CloseAllWithoutSaving_confirmed"]
 [connection signal="confirmed" from="Dialogs/QuitWithoutSaving" to="Dialogs" method="_on_QuitWithoutSaving_confirmed"]
+[connection signal="confirmed" from="Dialogs/SelectExporter" to="Dialogs" method="_on_SelectExporter_confirmed"]

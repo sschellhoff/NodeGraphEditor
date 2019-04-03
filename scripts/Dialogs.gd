@@ -23,7 +23,14 @@ func load_editor_dialog_open():
 	$Load.popup_centered()
 
 func export_editor_dialog_open():
-	$Export.popup_centered()
+	var exporters = FilesystemHelper.get_exporters()
+	$SelectExporter/OptionButton.clear()
+	if exporters.size() == 0:
+		Logger.error("no exporter installed!")
+	else:
+		for exporter in exporters:
+			$SelectExporter/OptionButton.add_item(exporter)
+		$SelectExporter.popup_centered()
 
 func close_without_saving_dialog_open():
 	$CloseWithoutSaving.popup_centered()
@@ -44,7 +51,11 @@ func _on_Save_file_selected(path):
 		emit_signal("save_editor", path)
 
 func _on_Export_file_selected(path):
-	emit_signal("export_editor", path, "json")
+	var selected_exporter = $SelectExporter/OptionButton.get_item_text($SelectExporter/OptionButton.get_selected_id())
+	if selected_exporter == null or selected_exporter == "":
+		Logger.error("No exporter selected!")
+	else:
+		emit_signal("export_editor", path, selected_exporter)
 
 func _on_Load_file_selected(path):
 	emit_signal("load_editor", path)
@@ -57,3 +68,10 @@ func _on_CloseAllWithoutSaving_confirmed():
 
 func _on_QuitWithoutSaving_confirmed():
 	emit_signal("quit_without_save")
+
+func _on_SelectExporter_confirmed():
+	var selected_exporter = $SelectExporter/OptionButton.get_item_text($SelectExporter/OptionButton.get_selected_id())
+	if selected_exporter == null or selected_exporter == "":
+		Logger.error("No exporter selected!")
+	else:
+		$Export.popup_centered()

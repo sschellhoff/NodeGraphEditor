@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():
-	$VBoxContainer/MenuBar.disable_save_export_buttons()
+	$VBoxContainer/MenuBar.disable_editor_buttons()
 	
 func new_editor(node_types):
 	print(node_types)
@@ -70,6 +70,6 @@ func _on_MenuBar_quit_pressed():
 
 func _on_Content_number_of_tabs_changed(no):
 	if no == 0:
-		$VBoxContainer/MenuBar.disable_save_export_buttons()
+		$VBoxContainer/MenuBar.disable_editor_buttons()
 	else:
-		$VBoxContainer/MenuBar.enable_save_export_buttons()
+		$VBoxContainer/MenuBar.enable_editor_buttons()

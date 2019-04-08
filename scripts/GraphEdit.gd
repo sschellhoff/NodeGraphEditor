@@ -4,16 +4,18 @@ signal content_changed
 
 func _ready():
 	build_context_menu()
-	
+
 func build_context_menu():
 	$ContextMenu.clear()
 	for type in $NodeBuilder.get_type_names():
 		$ContextMenu.add_item(type)
 
-func add_node(name, position, type):
+func add_node(name, position, type, info):
 	var node = $NodeBuilder.create_node(type, position)
 	add_child(node)
 	node.set_name(name)
+	node.info = info
+	node.connect("popup_request", self, "_on_node_popup_request")
 	emit_signal("content_changed")
 
 func get_graph_data():
@@ -75,4 +77,10 @@ func _on_GraphEdit_delete_nodes_request():
 	emit_signal("content_changed")
 
 func _on_GraphEdit__end_node_move():
+	emit_signal("content_changed")
+
+func _on_node_popup_request(sender, position):
+	$NodeDataContextMenu.open(sender, position)
+
+func _on_NodeDataContextMenu_node_info_changed(node) -> void:
 	emit_signal("content_changed")

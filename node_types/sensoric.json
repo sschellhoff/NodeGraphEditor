@@ -1,0 +1,92 @@
+{
+    "port_types": [
+        {
+            "name": "float",
+            "color": [0.5, 0.5, 0.0]
+        },
+        {
+            "name": "flow",
+            "color": [0.7, 0.7, 0.7]
+        },
+        {
+            "name": "reference",
+            "color": [0.1, 0.0, 1.0]
+        }
+    ],
+    "node_types": [
+        {
+            "name": "start",
+            "inputs": [],
+            "outputs": [{"name": "next", "type": "flow"}]
+        },
+
+        {
+            "name": "variable",
+            "inputs": [{"name": "writer", "type": "reference"}],
+            "outputs": [{"name": "value", "type": "float"}]
+        },
+        {
+            "name": "temperature",
+            "inputs": [],
+            "outputs": [{"name": "value", "type": "float"}]
+        },
+        {
+            "name": "velocity",
+            "inputs": [],
+            "outputs": [{"name": "value", "type": "float"}]
+        },
+        {
+            "name": "act. radio cell",
+            "inputs": [],
+            "outputs": [{"name": "value", "type": "float"}]
+        },
+
+        {
+            "name": "add",
+            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
+            "outputs": [{"name": "out", "type": "float"}, {"name": "next", "type": "flow"}]
+        },
+        {
+            "name": "sub",
+            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
+            "outputs": [{"name": "out", "type": "float"}, {"name": "next", "type": "flow"}]
+        },
+        {
+            "name": "mult",
+            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
+            "outputs": [{"name": "out", "type": "float"}, {"name": "next", "type": "flow"}]
+        },
+        {
+            "name": "div",
+            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
+            "outputs": [{"name": "out", "type": "float"}, {"name": "next", "type": "flow"}]
+        },
+
+        {
+            "name": "equals",
+            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
+            "outputs": [{"name": "next true", "type": "flow"}, {"name": "next false", "type": "flow"}]
+        },
+        {
+            "name": "smaller",
+            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
+            "outputs": [{"name": "next true", "type": "flow"}, {"name": "next false", "type": "flow"}]
+        },
+
+        {
+            "name": "sleep",
+            "inputs": [{"name": "prev", "type": "flow"}],
+            "outputs": []
+        },
+        {
+            "name": "send",
+            "inputs": [{"name": "value", "type": "float"}, {"name": "prev", "type": "flow"}],
+            "outputs": [{"name": "next", "type": "flow"}]
+        },
+        {
+            "name": "save",
+            "inputs": [{"name": "value", "type": "float"}, {"name": "prev", "type": "flow"}],
+            "outputs": [{"name": "variable", "type": "reference"}, {"name": "next", "type": "flow"}]
+        }
+    ]
+}

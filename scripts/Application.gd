@@ -2,7 +2,7 @@ extends Node
 
 func _ready():
 	$VBoxContainer/MenuBar.disable_editor_buttons()
-	
+
 func new_editor(node_types):
 	print(node_types)
 	$VBoxContainer/Content.new_editor(node_types)
@@ -80,7 +80,7 @@ func _on_MenuBar_close_all_tabs_pressed():
 		$Dialogs.close_all_without_saving_dialog_open()
 	else:
 		$VBoxContainer/Content.free_all_editors()
-	
+
 func _on_MenuBar_quit_pressed():
 	if $VBoxContainer/Content.is_any_editor_unsaved():
 		$Dialogs.quit_without_saving_dialog_open()

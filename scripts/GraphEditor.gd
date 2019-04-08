@@ -22,7 +22,10 @@ func add_graph(graph):
 	for node in graph.nodes:
 		var position = Vector2(float(node.position.x), float(node.position.y))
 		var name = node.name.split("@").join("") # godot puts @ in it's instance names but you cannot name something with an @ it it by yourself
-		$GraphEdit.add_node(name, position, node.type)
+		var info = ""
+		if node.has("info"):
+			info = node.info
+		$GraphEdit.add_node(name, position, node.type, info)
 	for connection in graph.connections:
 		var from = connection.from.split("@").join("") # godot puts @ in it's instance names but you cannot name something with an @ it it by yourself
 		var to = connection.to.split("@").join("") # godot puts @ in it's instance names but you cannot name something with an @ it it by yourself

@@ -6,6 +6,7 @@ var unsaved = true
 export(String, FILE) var path
 var node_collection = null
 
+
 func register_node_types_from_collection(node_collection):
 	self.node_collection = node_collection
 	var type_collection = FilesystemHelper.open_collection_by_name(node_collection)

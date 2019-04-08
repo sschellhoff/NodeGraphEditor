@@ -26,7 +26,7 @@ func _on_Dialogs_save_editor(path):
 func _on_Dialogs_load_editor(path):
 	var graph_data = FilesystemHelper.json_from_file(path)
 	$VBoxContainer/Content.new_editor_from_data(graph_data)
-	$VBoxContainer/Content.set_path(path)
+	$VBoxContainer/Content.set_saved(path)
 	$VBoxContainer/Content.set_title(FilesystemHelper.filename_from_path(path))
 
 func _on_Dialogs_export_editor(path, exporter):

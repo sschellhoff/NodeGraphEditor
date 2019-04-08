@@ -7,7 +7,7 @@ enum LOG_LEVEL {
 	NOTHING
 }
 
-var Level = LOG_LEVEL.ALL
+var Level = LOG_LEVEL.ERROR
 
 func error(msg):
 	if Level != LOG_LEVEL.NOTHING:

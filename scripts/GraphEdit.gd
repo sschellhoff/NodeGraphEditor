@@ -68,7 +68,8 @@ func _on_GraphEdit_popup_request(position):
 	$ContextMenu.popup()
 
 func _on_ContextMenu_index_pressed(index):
-	add_child($NodeBuilder.create_node($ContextMenu.get_item_text(index), $ContextMenu.rect_position))
+	var type = $ContextMenu.get_item_text(index)
+	add_node("Node_" + type, $ContextMenu.rect_position, type, "")
 
 func _on_GraphEdit_delete_nodes_request():
 	var selected_nodes = get_selected_nodes()

@@ -15,7 +15,13 @@ func register_node_types_from_collection(node_collection):
 		$GraphEdit/NodeBuilder.register_port_type(type.name, Color(type.color[0], type.color[1], type.color[2]))
 	var node_types = type_collection.node_types
 	for type in node_types:
-		$GraphEdit/NodeBuilder.register_node_type(type.name, type.inputs, type.outputs)
+		var inputs = []
+		if type.has("inputs"):
+			inputs = type.inputs
+		var outputs = []
+		if type.has("outputs"):
+			outputs = type.outputs
+		$GraphEdit/NodeBuilder.register_node_type(type.name, inputs, outputs)
 	$GraphEdit.build_context_menu()
 
 func add_graph(graph):

@@ -7,13 +7,16 @@
         {
             "name": "bool",
             "color": [1.0, 0.5, 0.0]
+        },
+        {
+            "name": "flow",
+            "color": [1.0, 0.5, 0.5]
         }
     ],
     "node_types": [
         {
-            "name": "add",
-             "inputs": [ {"name": "a", "type": "float"}, {"name": "b", "type": "float" }], 
-             "outputs": [ { "name": "out", "type": "float" }]
+            "name": "some node",
+             "ports": [ { "name": "some in", "type": "float", "slots": "in" }, { "name": "some out", "type": "bool", "slots": "out" }, { "name": "some flow", "type": "flow", "slots": "inout" } ]
         }
     ]
 }

@@ -16,77 +16,75 @@
     "node_types": [
         {
             "name": "start",
-            "inputs": [],
-            "outputs": [{"name": "next", "type": "flow"}]
+            "ports": [{"name": "flow", "type": "flow", "slots": "out"}]
         },
 
         {
             "name": "variable",
-            "inputs": [{"name": "writer", "type": "reference"}],
-            "outputs": [{"name": "value", "type": "float"}]
+            "ports": [{"name": "writer", "type": "reference", "slots": "in"}, {"name": "value", "type": "float", "slots": "out"}]
         },
         {
             "name": "temperature",
-            "inputs": [],
-            "outputs": [{"name": "value", "type": "float"}]
+            "ports": [{"name": "value", "type": "float", "slots": "out"}]
         },
         {
             "name": "velocity",
-            "inputs": [],
-            "outputs": [{"name": "value", "type": "float"}]
+            "ports": [{"name": "value", "type": "float", "slots": "out"}]
         },
         {
             "name": "act. radio cell",
-            "inputs": [],
-            "outputs": [{"name": "value", "type": "float"}]
+            "ports": [{"name": "value", "type": "float", "slots": "out"}]
         },
 
         {
             "name": "add",
-            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
-            "outputs": [{"name": "out", "type": "float"}, {"name": "next", "type": "flow"}]
+            "ports": [{"name": "a", "type": "float", "slots": "in"}, {"name": "b", "type": "float", "slots": "in"}, {"name": "out", "type": "float", "slots": "out"}, {"name": "flow", "type": "flow", "slots": "inout"}]
         },
         {
             "name": "sub",
-            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
-            "outputs": [{"name": "out", "type": "float"}, {"name": "next", "type": "flow"}]
+            "ports": [{"name": "a", "type": "float", "slots": "in"}, {"name": "b", "type": "float", "slots": "in"}, {"name": "out", "type": "float", "slots": "out"}, {"name": "flow", "type": "flow", "slots": "inout"}]
         },
         {
             "name": "mult",
-            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
-            "outputs": [{"name": "out", "type": "float"}, {"name": "next", "type": "flow"}]
+            "ports": [{"name": "a", "type": "float", "slots": "in"}, {"name": "b", "type": "float", "slots": "in"}, {"name": "out", "type": "float", "slots": "out"}, {"name": "flow", "type": "flow", "slots": "inout"}]
         },
         {
             "name": "div",
-            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
-            "outputs": [{"name": "out", "type": "float"}, {"name": "next", "type": "flow"}]
+            "ports": [{"name": "a", "type": "float", "slots": "in"}, {"name": "b", "type": "float", "slots": "in"}, {"name": "out", "type": "float", "slots": "out"}, {"name": "flow", "type": "flow", "slots": "inout"}]
         },
 
         {
             "name": "equals",
-            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
-            "outputs": [{"name": "next true", "type": "flow"}, {"name": "next false", "type": "flow"}]
+            "ports": [{"name": "a", "type": "float", "slots": "in"}, {"name": "b", "type": "float", "slots": "in"}, {"name": "flow", "type": "flow", "slots": "in"}, {"name": "true", "type": "flow", "slots": "out"}, {"name": "false", "type": "flow", "slots": "out"}]
         },
         {
             "name": "smaller",
-            "inputs": [{"name": "a", "type": "float"}, {"name": "b", "type": "float"}, {"name": "prev", "type": "flow"}],
-            "outputs": [{"name": "next true", "type": "flow"}, {"name": "next false", "type": "flow"}]
+            "ports": [{"name": "a", "type": "float", "slots": "in"}, {"name": "b", "type": "float", "slots": "in"}, {"name": "flow", "type": "flow", "slots": "in"}, {"name": "true", "type": "flow", "slots": "out"}, {"name": "false", "type": "flow", "slots": "out"}]
+        },
+        {
+            "name": "greater",
+            "ports": [{"name": "a", "type": "float", "slots": "in"}, {"name": "b", "type": "float", "slots": "in"}, {"name": "flow", "type": "flow", "slots": "in"}, {"name": "true", "type": "flow", "slots": "out"}, {"name": "false", "type": "flow", "slots": "out"}]
+        },
+        {
+            "name": "smaller equals",
+            "ports": [{"name": "a", "type": "float", "slots": "in"}, {"name": "b", "type": "float", "slots": "in"}, {"name": "flow", "type": "flow", "slots": "in"}, {"name": "true", "type": "flow", "slots": "out"}, {"name": "false", "type": "flow", "slots": "out"}]
+        },
+        {
+            "name": "greater equals",
+            "ports": [{"name": "a", "type": "float", "slots": "in"}, {"name": "b", "type": "float", "slots": "in"}, {"name": "flow", "type": "flow", "slots": "in"}, {"name": "true", "type": "flow", "slots": "out"}, {"name": "false", "type": "flow", "slots": "out"}]
         },
 
         {
             "name": "sleep",
-            "inputs": [{"name": "prev", "type": "flow"}],
-            "outputs": []
+            "ports": [{"name": "flow", "type": "flow", "slots": "in"}],
         },
         {
             "name": "send",
-            "inputs": [{"name": "value", "type": "float"}, {"name": "prev", "type": "flow"}],
-            "outputs": [{"name": "next", "type": "flow"}]
+            "ports": [{"name": "value", "type": "float", "slots": "in"}, {"name": "flow", "type": "flow", "slots": "inout"}]
         },
         {
             "name": "save",
-            "inputs": [{"name": "value", "type": "float"}, {"name": "prev", "type": "flow"}],
-            "outputs": [{"name": "variable", "type": "reference"}, {"name": "next", "type": "flow"}]
+            "ports": [{"name": "value", "type": "float", "slots": "in"}, {"name": "variable", "type": "reference", "slots": "out"}, {"name": "flow", "type": "flow", "slots": "inout"}]
         }
     ]
 }
